@@ -54,7 +54,7 @@ Install the following on your system:
 
 ---
 
-## 🔧 Backend Setup (Local)
+## 🔧 Backend Setup
 
 ### 1️⃣ Go to backend folder
 ``` bash
@@ -62,8 +62,62 @@ cd backend
 ```
 ---
 
-##2️⃣ Install dependencies
+### 2️⃣ Install dependencies
 ```bash
 npm install
 npm install cors
 ```
+---
+
+### 3️⃣ Create .env file
+```bash
+METAL_API_KEY=your_metalpriceapi_key
+CURRENCY_API_KEY=your_currencyfreaks_key
+PORT=5000
+```
+---
+
+###4️⃣ Start backend server
+```bash
+npm start
+```
+---
+
+### 5️⃣ Test API
+```bash
+http://localhost:5000/api/goldrate
+```
+
+---
+
+### 🎨 Frontend Setup
+
+###1️⃣ Go to frontend folder
+```bash
+cd frontend
+```
+---
+
+###2️⃣ Install dependencies
+```bash
+npm install
+```
+---
+
+###3️⃣ Create .env file
+```bash
+REACT_APP_BACKEND_URL=http://localhost:5000
+```
+---
+
+###4️⃣ Start frontend
+```bash
+npm start
+```
+---
+
+###5️⃣ Open app
+```bash
+http://localhost:3000
+```
+---
