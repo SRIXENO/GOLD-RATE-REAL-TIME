@@ -57,5 +57,5 @@ Install the following on your system:
 ## 🔧 Backend Setup (Local)
 
 ### 1️⃣ Go to backend folder
-- bash
+``` bash
 cd backend
