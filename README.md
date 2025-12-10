@@ -59,10 +59,11 @@ Install the following on your system:
 ### 1️⃣ Go to backend folder
 ``` bash
 cd backend
-
+```
 ---
 
 ##2️⃣ Install dependencies
 ```bash
 npm install
 npm install cors
+```
