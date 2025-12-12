@@ -58,8 +58,8 @@ Install the following on your system:
 ### Create .env file
 - Use your Metal Api and Currency api
 ```bash
-METAL_API_KEY=your_metalpriceapi_key
-CURRENCY_API_KEY=your_currencyfreaks_key
+METAL_API_KEY=your_metalpriceapi_key   #metalpriceapi.com
+CURRENCY_API_KEY=your_currencyfreaks_key #currencyfreaks.com
 PORT=5000
 ```
 ---
