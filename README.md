@@ -77,7 +77,7 @@ PORT=5000
 ```
 ---
 
-###4️⃣ Start backend server
+### 4️⃣ Start backend server
 ```bash
 npm start
 ```
@@ -92,31 +92,31 @@ http://localhost:5000/api/goldrate
 
 ### 🎨 Frontend Setup
 
-###1️⃣ Go to frontend folder
+### 1️⃣ Go to frontend folder
 ```bash
 cd frontend
 ```
 ---
 
-###2️⃣ Install dependencies
+### 2️⃣ Install dependencies
 ```bash
 npm install
 ```
 ---
 
-###3️⃣ Create .env file
+### 3️⃣ Create .env file
 ```bash
 REACT_APP_BACKEND_URL=http://localhost:5000
 ```
 ---
 
-###4️⃣ Start frontend
+### 4️⃣ Start frontend
 ```bash
 npm start
 ```
 ---
 
-###5️⃣ Open app
+### 5️⃣ Open app
 ```bash
 http://localhost:3000
 ```
