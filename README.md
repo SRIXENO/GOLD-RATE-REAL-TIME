@@ -2,7 +2,7 @@
 
 A full‑stack web application that displays **live gold prices (24K / 22K / 18K)** in INR using **global spot price**, currency conversion, and adjustable Indian retail markup.
 
-Built with **React + Node.js**, deployed on **AWS (Amplify + Elastic Beanstalk)** with **CI/CD enabled via GitHub**.
+Built with **React + Node.js**, deployed on Local machine**.
 
 ---
 
@@ -32,7 +32,6 @@ Built with **React + Node.js**, deployed on **AWS (Amplify + Elastic Beanstalk)*
 - Axios
 - dotenv
 - cors
-- AWS Elastic Beanstalk
 
 ### APIs Used
 - **MetalpriceAPI** – Gold spot price
@@ -49,7 +48,6 @@ Install the following on your system:
 - **Node.js** (v18+ recommended)
 - **npm**
 - **Git**
-- AWS Account (Free Tier)
 - GitHub Account
 
 ---
