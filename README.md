@@ -22,7 +22,6 @@ Built with **React + Node.js**, deployed on Local machine**.
 
 ### Frontend
 - React (Create React App)
-- Axios
 - Environment Variables (`.env`)
 - AWS Amplify (Hosting + CI/CD)
 
