@@ -1,0 +1,356 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeInDown 0.6s ease;
+}
+
+.gold-icon {
+  font-size: 60px;
+  margin-bottom: 10px;
+  animation: bounce 2s infinite;
+}
+
+.title {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.control-card {
+  background: rgba(255,255,255,0.95);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  margin-bottom: 40px;
+  animation: fadeInUp 0.6s ease;
+}
+
+.control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.control-header label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.markup-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #667eea;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  outline: none;
+  -webkit-appearance: none;
+  margin-bottom: 10px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  border: none;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.refresh-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.refresh-btn:active {
+  transform: translateY(0);
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: white;
+  animation: fadeIn 0.3s ease;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.error {
+  background: rgba(255,255,255,0.95);
+  color: #e74c3c;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 18px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  animation: shake 0.5s ease;
+}
+
+.rates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.rate-card {
+  background: rgba(255,255,255,0.95);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.rate-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+}
+
+.rate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+}
+
+.gold-24k::before {
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+}
+
+.gold-22k::before {
+  background: linear-gradient(90deg, #DAA520, #FF8C00);
+}
+
+.gold-18k::before {
+  background: linear-gradient(90deg, #B8860B, #FF6347);
+}
+
+.karat-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.rate-card h2 {
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.price-main {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+.price-label {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.price-list {
+  border-top: 2px solid #f0f0f0;
+  padding-top: 20px;
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
+  color: #555;
+  font-size: 16px;
+}
+
+.price-item:last-child {
+  border-bottom: none;
+}
+
+.price-item span:first-child {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.price-item span:last-child {
+  font-weight: 700;
+  color: #333;
+}
+
+.footer {
+  text-align: center;
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+  padding: 20px;
+  animation: fadeIn 0.6s ease 0.4s both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+  
+  .rates-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .control-card {
+    padding: 20px;
+  }
+}
