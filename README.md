@@ -1,130 +1,89 @@
 # Gold Rate Dashboard
 
-A real-time gold price tracking application for the Indian market. This dashboard fetches live gold rates from international markets, converts them to INR, and displays prices for 24K, 22K, and 18K gold with customizable markup adjustments.
+Full-stack app that fetches live gold prices, converts them to INR, applies a configurable markup, and displays 24K/22K/18K rates in a React dashboard.
 
-## Features
+## What This Project Does
 
-- Real-time gold price updates from MetalpriceAPI
-- Live USD to INR conversion via CurrencyFreaks
-- Support for multiple gold purities (24K, 22K, 18K)
-- Adjustable markup percentage for taxes and premiums
-- Price calculations for common weights (1g, 8g, 10g, 100g)
-- Modern, responsive UI with gradient design
-- Smooth animations and interactive controls
+- Backend API fetches:
+  - XAU to USD rate from MetalpriceAPI
+  - USD to INR rate from CurrencyFreaks
+- Converts ounce price to gram price
+- Applies a markup percentage (default 12%)
+- Returns today rates for:
+  - 24K
+  - 22K (24K * 22/24)
+  - 18K (24K * 18/24)
+- Frontend shows:
+  - Markup slider
+  - Refresh button
+  - Per-gram and 8g/10g/100g cards
 
 ## Tech Stack
 
-**Frontend:**
-- React 19
-- Axios for API calls
-- CSS3 with animations
-
-**Backend:**
-- Node.js with Express
-- Axios for external API integration
-- CORS enabled
+- Frontend: React 19, Axios, Create React App
+- Backend: Node.js, Express 5, Axios, CORS, dotenv
+- Scripts: Windows `.bat` helper scripts
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
-- npm (comes with Node.js)
-- API keys from:
-  - [MetalpriceAPI](https://metalpriceapi.com/)
-  - [CurrencyFreaks](https://currencyfreaks.com/)
+- Node.js 18+ recommended
+- npm
+- API keys:
+  - `METAL_API_KEY` from MetalpriceAPI
+  - `CURRENCY_API_KEY` from CurrencyFreaks
 
-## Quick Start
+## Environment Variables
 
-### 1. Clone the repository
-```bash
-git clone <repository-url>
-cd gold-rate-dashboard
-```
+Create these files:
 
-### 2. Configure API Keys
+`backend/.env`
 
-Create `.env` files in both backend and frontend directories:
-
-**backend/.env**
-```
-METAL_API_KEY=your_metal_api_key
-CURRENCY_API_KEY=your_currency_api_key
+```env
+METAL_API_KEY=your_key_here
+CURRENCY_API_KEY=your_key_here
 PORT=5000
 ```
 
-**frontend/.env**
-```
+`frontend/.env`
+
+```env
 REACT_APP_BACKEND_URL=http://localhost:5000
 ```
 
-### 3. Install Dependencies
+## Run Locally
 
-Run the installation script:
-```bash
+1. Install dependencies (both apps):
+
+```bat
 install.bat
 ```
 
-This will automatically install all required dependencies for both backend and frontend.
+2. Start backend + frontend:
 
-### 4. Start the Application
-
-Launch both servers:
-```bash
+```bat
 start.bat
 ```
 
-This opens two terminal windows:
-- Backend server on `http://localhost:5000`
-- Frontend application on `http://localhost:3000`
+3. Open:
+  - Frontend: `http://localhost:3000`
+  - Backend: `http://localhost:5000`
 
-The browser will open automatically with the dashboard.
+Manual run:
 
-## Manual Setup
-
-If you prefer manual installation:
-
-**Backend:**
 ```bash
-cd backend
-npm install
-npm start
+cd backend && npm install && npm start
+cd frontend && npm install && npm start
 ```
 
-**Frontend:**
-```bash
-cd frontend
-npm install
-npm start
-```
+## Backend API
 
-## Project Structure
+### `GET /api/goldrate?markup=12`
 
-```
-gold-rate-dashboard/
-├── backend/
-│   ├── index.js          # Express server & API logic
-│   ├── package.json
-│   └── .env
-├── frontend/
-│   ├── src/
-│   │   ├── App.js        # Main React component
-│   │   ├── App.css       # Styling
-│   │   └── index.js
-│   ├── package.json
-│   └── .env
-├── install.bat           # Dependency installer
-└── start.bat            # Application launcher
-```
+Query params:
+- `markup` number (0 to 100), optional, default `12`
 
-## API Endpoints
+Success response example:
 
-### GET /api/goldrate
-
-Fetches current gold rates with optional markup.
-
-**Query Parameters:**
-- `markup` (optional): Percentage markup (0-100), default: 12
-
-**Response:**
 ```json
 {
   "source": "MetalpriceAPI + CurrencyFreaks",
@@ -138,31 +97,64 @@ Fetches current gold rates with optional markup.
 }
 ```
 
-## Usage
+Possible errors:
+- `400` when markup is outside 0..100
+- `500` when API keys are missing or upstream call fails
 
-1. The dashboard loads with a default 12% markup (typical for Indian market)
-2. Adjust the markup slider to see price changes in real-time
-3. Click "Refresh Rates" to fetch the latest prices
-4. View prices per gram and common weights for each gold purity
+## Repository Analysis (File-by-File)
 
-## Troubleshooting
+### Root
 
-**Port already in use:**
-- Change PORT in `backend/.env`
-- Update REACT_APP_BACKEND_URL in `frontend/.env`
+- `.gitignore`: ignores node modules, env files, build artifacts, logs, IDE files.
+- `README.md`: project documentation (this file).
+- `install.bat`: installs npm dependencies in `backend` and `frontend`.
+- `start.bat`: opens two terminals and starts backend/frontend.
+- `git-connect.bat`: adds remote, commits all files, pushes `main`.
+- `git-update.bat`: `git add .`, asks for commit message, pushes.
+- `git-info.bat`: prints remote, branch, and recent commits.
+- `git-force-push.bat`: pulls with unrelated histories flag, then pushes.
+- `folder structure.swift`: static text sketch of an intended structure; does not match actual current repo.
 
-**API errors:**
-- Verify API keys are correct in `backend/.env`
-- Check API rate limits on provider websites
+### Backend (`/backend`)
 
-**Dependencies fail to install:**
-- Clear npm cache: `npm cache clean --force`
-- Delete `node_modules` folders and run `install.bat` again
+- `package.json`: Express server package with `start` and `dev` scripts.
+- `index.js`: API server implementation:
+  - loads env vars
+  - exposes `/api/goldrate`
+  - computes prices and returns 24K/22K/18K
+
+### Frontend (`/frontend`)
+
+- `package.json`: CRA app package; has `proxy` set to `http://localhost:5000`.
+- `README.md`: default Create React App template docs.
+
+#### Frontend Public
+
+- `public/index.html`: CRA HTML shell.
+- `public/manifest.json`: default web app manifest.
+- `public/robots.txt`: default robots config.
+- `public/favicon.ico`, `logo192.png`, `logo512.png`: default CRA assets.
+
+#### Frontend Source
+
+- `src/index.js`: React entry point.
+- `src/index.css`: base global styles.
+- `src/App.js`: main dashboard logic and UI:
+  - state for `goldRate`, `loading`, `error`, `markup`
+  - fetches `/api/goldrate`
+  - renders cards and computed weights
+- `src/App.css`: dashboard styles and animations.
+- `src/App.test.js`: default CRA-style test (currently not aligned with current UI text).
+- `src/reportWebVitals.js`: CRA performance helper.
+- `src/setupTests.js`: Jest DOM setup.
+- `src/logo.svg`: default CRA SVG logo (unused in current UI).
+
+## Current Notes / Gaps
+
+- `frontend/src/App.test.js` still expects "learn react" text and will fail unless updated.
+- Frontend fetch uses `REACT_APP_BACKEND_URL`; ensure it is set in `frontend/.env`.
+- `frontend/package.json` also has `proxy`, but current code uses absolute env-based URL.
 
 ## License
 
-MIT
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss proposed changes.
+ISC (as currently declared in `backend/package.json`).
